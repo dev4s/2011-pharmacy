@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="Model1StoreContainer">
+          <EntitySet Name="BadProduct" EntityType="Model1.Store.BadProduct" store:Type="Tables" />
+          <EntitySet Name="GoodProduct" EntityType="Model1.Store.GoodProduct" store:Type="Tables" />
+          <EntitySet Name="Session" EntityType="Model1.Store.Session" store:Type="Tables" />
+          <AssociationSet Name="FromBadProductsToSession" Association="Model1.Store.FromBadProductsToSession">
+            <End Role="Session" EntitySet="Session" />
+            <End Role="BadProduct" EntitySet="BadProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FromGoodProductsToSession" Association="Model1.Store.FromGoodProductsToSession">
+            <End Role="Session" EntitySet="Session" />
+            <End Role="GoodProduct" EntitySet="GoodProduct" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BadProduct">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SessionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductId" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductDirtyBarcode" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductCleanBarcode" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductBarcodeType" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductQuantityCounted" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductConnectedWithProduct" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductClientAdded" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductClientConnected" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductDateAdded" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductDateConnected" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="GoodProduct">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SessionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductID" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductDirtyBarcode" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductCleanBarcode" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductBarcodeType" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductQuantityCounted" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductQuantityFromDatabase" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductQuantityFromBeginning" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductAddedClient" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductModifiedClient" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductDateAdded" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductDateModified" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <Association Name="FromBadProductsToSession">
+          <End Role="Session" Type="Model1.Store.Session" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BadProduct" Type="Model1.Store.BadProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BadProduct">
+              <PropertyRef Name="SessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FromGoodProductsToSession">
+          <End Role="Session" Type="Model1.Store.Session" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GoodProduct" Type="Model1.Store.GoodProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GoodProduct">
+              <PropertyRef Name="SessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="LocalDatabaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="LocalDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BadProducts" EntityType="LocalDatabaseModel.BadProduct" />
+          <EntitySet Name="GoodProducts" EntityType="LocalDatabaseModel.GoodProduct" />
+          <EntitySet Name="Sessions" EntityType="LocalDatabaseModel.Session" />
+          <AssociationSet Name="FromBadProductsToSession" Association="LocalDatabaseModel.FromBadProductsToSession">
+            <End Role="Session" EntitySet="Sessions" />
+            <End Role="BadProduct" EntitySet="BadProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FromGoodProductsToSession" Association="LocalDatabaseModel.FromGoodProductsToSession">
+            <End Role="Session" EntitySet="Sessions" />
+            <End Role="GoodProduct" EntitySet="GoodProducts" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BadProduct">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="Guid" Name="SessionID" Nullable="false" />
+          <Property Type="String" Name="ProductId" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductDirtyBarcode" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductCleanBarcode" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductBarcodeType" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductQuantityCounted" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductConnectedWithProduct" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductClientAdded" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductClientConnected" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductDateAdded" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductDateConnected" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Session" Relationship="LocalDatabaseModel.FromBadProductsToSession" FromRole="BadProduct" ToRole="Session" />
+        </EntityType>
+        <EntityType Name="GoodProduct">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="Guid" Name="SessionID" Nullable="false" />
+          <Property Type="String" Name="ProductID" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductDirtyBarcode" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductCleanBarcode" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductBarcodeType" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductQuantityCounted" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductQuantityFromDatabase" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductQuantityFromBeginning" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductAddedClient" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductModifiedClient" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductDateAdded" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductDateModified" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Session" Relationship="LocalDatabaseModel.FromGoodProductsToSession" FromRole="GoodProduct" ToRole="Session" />
+        </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="DateTime" Name="DateAdded" Nullable="false" />
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <NavigationProperty Name="BadProducts" Relationship="LocalDatabaseModel.FromBadProductsToSession" FromRole="Session" ToRole="BadProduct" />
+          <NavigationProperty Name="GoodProducts" Relationship="LocalDatabaseModel.FromGoodProductsToSession" FromRole="Session" ToRole="GoodProduct" />
+        </EntityType>
+        <Association Name="FromBadProductsToSession">
+          <End Type="LocalDatabaseModel.Session" Role="Session" Multiplicity="1" />
+          <End Type="LocalDatabaseModel.BadProduct" Role="BadProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BadProduct">
+              <PropertyRef Name="SessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FromGoodProductsToSession">
+          <End Type="LocalDatabaseModel.Session" Role="Session" Multiplicity="1" />
+          <End Type="LocalDatabaseModel.GoodProduct" Role="GoodProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GoodProduct">
+              <PropertyRef Name="SessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Model1" />
+        <Alias Key="Target" Value="Model1.Store" />
+        <EntityContainerMapping CdmEntityContainer="LocalDatabaseEntities" StorageEntityContainer="Model1StoreContainer">
+          <EntitySetMapping Name="BadProducts">
+            <EntityTypeMapping TypeName="LocalDatabaseModel.BadProduct">
+              <MappingFragment StoreEntitySet="BadProduct">
+                <ScalarProperty Name="ProductDateConnected" ColumnName="ProductDateConnected" />
+                <ScalarProperty Name="ProductDateAdded" ColumnName="ProductDateAdded" />
+                <ScalarProperty Name="ProductClientConnected" ColumnName="ProductClientConnected" />
+                <ScalarProperty Name="ProductClientAdded" ColumnName="ProductClientAdded" />
+                <ScalarProperty Name="ProductConnectedWithProduct" ColumnName="ProductConnectedWithProduct" />
+                <ScalarProperty Name="ProductQuantityCounted" ColumnName="ProductQuantityCounted" />
+                <ScalarProperty Name="ProductBarcodeType" ColumnName="ProductBarcodeType" />
+                <ScalarProperty Name="ProductCleanBarcode" ColumnName="ProductCleanBarcode" />
+                <ScalarProperty Name="ProductDirtyBarcode" ColumnName="ProductDirtyBarcode" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoodProducts">
+            <EntityTypeMapping TypeName="LocalDatabaseModel.GoodProduct">
+              <MappingFragment StoreEntitySet="GoodProduct">
+                <ScalarProperty Name="ProductDateModified" ColumnName="ProductDateModified" />
+                <ScalarProperty Name="ProductDateAdded" ColumnName="ProductDateAdded" />
+                <ScalarProperty Name="ProductModifiedClient" ColumnName="ProductModifiedClient" />
+                <ScalarProperty Name="ProductAddedClient" ColumnName="ProductAddedClient" />
+                <ScalarProperty Name="ProductQuantityFromBeginning" ColumnName="ProductQuantityFromBeginning" />
+                <ScalarProperty Name="ProductQuantityFromDatabase" ColumnName="ProductQuantityFromDatabase" />
+                <ScalarProperty Name="ProductQuantityCounted" ColumnName="ProductQuantityCounted" />
+                <ScalarProperty Name="ProductBarcodeType" ColumnName="ProductBarcodeType" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductCleanBarcode" ColumnName="ProductCleanBarcode" />
+                <ScalarProperty Name="ProductDirtyBarcode" ColumnName="ProductDirtyBarcode" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sessions">
+            <EntityTypeMapping TypeName="LocalDatabaseModel.Session">
+              <MappingFragment StoreEntitySet="Session">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="Model1" >
+        <EntityTypeShape EntityType="LocalDatabaseModel.BadProduct" Width="1.5" PointX="1.25" PointY="2.125" Height="3.5186979166666656" />
+        <EntityTypeShape EntityType="LocalDatabaseModel.GoodProduct" Width="1.5" PointX="5.75" PointY="2" Height="3.9033007812499996" />
+        <EntityTypeShape EntityType="LocalDatabaseModel.Session" Width="1.5" PointX="3.25" PointY="2.75" Height="1.7879850260416674" />
+        <AssociationConnector Association="LocalDatabaseModel.FromBadProductsToSession" >
+          <ConnectorPoint PointX="3.25" PointY="3.6439925130208337" />
+          <ConnectorPoint PointX="2.75" PointY="3.6439925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="LocalDatabaseModel.FromGoodProductsToSession" >
+          <ConnectorPoint PointX="4.75" PointY="3.6439925130208337" />
+          <ConnectorPoint PointX="5.5" PointY="3.6439925130208337" />
+          <ConnectorPoint PointX="5.5" PointY="1.75" />
+          <ConnectorPoint PointX="6.625" PointY="1.75" />
+          <ConnectorPoint PointX="6.625" PointY="2" />
+        </AssociationConnector>
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

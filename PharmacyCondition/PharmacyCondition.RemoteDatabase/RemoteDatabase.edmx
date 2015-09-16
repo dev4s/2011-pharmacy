@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Alias="Self" Provider="FirebirdSql.Data.FirebirdClient" ProviderManifestToken="2.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="TOWARY" EntityType="Model.Store.TOWARY" store:Type="Tables" Schema="Firebird" />
+          <EntitySet Name="ZDST" EntityType="Model.Store.ZDST" store:Type="Tables" Schema="Firebird" />
+          <EntitySet Name="ZDST_KLAS" EntityType="Model.Store.ZDST_KLAS" store:Type="Tables" Schema="Firebird" />
+          <AssociationSet Name="FK_KL_ZDST" Association="Model.Store.FK_KL_ZDST">
+            <End Role="ZDST" EntitySet="ZDST" />
+            <End Role="ZDST_KLAS" EntitySet="ZDST_KLAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZDST_TOWARY" Association="Model.Store.FK_ZDST_TOWARY">
+            <End Role="TOWARY" EntitySet="TOWARY" />
+            <End Role="ZDST" EntitySet="ZDST" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TOWARY">
+          <Key>
+            <PropertyRef Name="ID_APTEKI" />
+            <PropertyRef Name="ID_TOWARY" />
+          </Key>
+          <Property Name="ID_APTEKI" Type="int" Nullable="false" />
+          <Property Name="ID_TOWARY" Type="int" Nullable="false" />
+          <Property Name="NAZWA" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="SP_ZAMAWIANIA" Type="char" MaxLength="1" />
+          <Property Name="DNI_MIN" Type="int" />
+          <Property Name="DNI_MAX" Type="int" />
+          <Property Name="STAN_MIN" Type="double" />
+          <Property Name="STAN_MAX" Type="double" />
+          <Property Name="NIE_MNIEJ" Type="double" />
+          <Property Name="DODAWAJ" Type="double" />
+          <Property Name="ZAMOWIENIE" Type="double" />
+          <Property Name="ZAMOWIONE" Type="double" />
+          <Property Name="ILOSC_POP" Type="double" />
+          <Property Name="IFUPDDATE" Type="timestamp" />
+          <Property Name="IFUPDUSER" Type="varchar" MaxLength="10" />
+          <Property Name="OPAKOWANIE" Type="varchar" MaxLength="100" />
+          <Property Name="POSTAC" Type="varchar" MaxLength="100" />
+          <Property Name="DAWKA" Type="varchar" MaxLength="100" />
+          <Property Name="ID_DOSTAWCY" Type="int" />
+          <Property Name="TYLKO_U" Type="char" MaxLength="1" />
+          <Property Name="ID_INTERNM" Type="int" />
+          <Property Name="ID_ODPZL" Type="int" />
+          <Property Name="ID_SYNSZCZ" Type="int" />
+          <Property Name="ID_SYNZB" Type="int" />
+          <Property Name="ID_PRODUCENCI" Type="int" />
+          <Property Name="USLUGA" Type="char" MaxLength="1" />
+          <Property Name="ID_CBT" Type="int" />
+          <Property Name="JEDN_METKI" Type="int" />
+          <Property Name="WWW_O1" Type="varchar" MaxLength="255" />
+          <Property Name="WWW_O2" Type="varchar" MaxLength="255" />
+          <Property Name="WWW_O3" Type="varchar" MaxLength="255" />
+          <Property Name="WWW_LASTSYNC" Type="timestamp" />
+          <Property Name="WWW_ID_TOWARU" Type="int" />
+          <Property Name="RABAT_DOS" Type="double" />
+          <Property Name="MAX_UPUST" Type="double" />
+          <Property Name="EAN_REF" Type="varchar" MaxLength="20" />
+          <Property Name="IMP_CBT_JEDN" Type="varchar" MaxLength="1" />
+          <Property Name="WWW_WAGA" Type="double" />
+          <Property Name="WWW_DOST" Type="int" />
+        </EntityType>
+        <EntityType Name="ZDST">
+          <Key>
+            <PropertyRef Name="ID_APTEKI" />
+            <PropertyRef Name="ID_ZDST" />
+          </Key>
+          <Property Name="ID_APTEKI" Type="int" Nullable="false" />
+          <Property Name="ID_ZDST" Type="double" Nullable="false" />
+          <Property Name="ID_DOSTAWY" Type="int" Nullable="false" />
+          <Property Name="POZYCJA" Type="int" Nullable="false" />
+          <Property Name="DATA" Type="timestamp" Nullable="false" />
+          <Property Name="ID_TOWARY" Type="int" Nullable="false" />
+          <Property Name="SZTUK" Type="double" Nullable="false" />
+          <Property Name="SZTUK_JP" Type="double" Nullable="false" />
+          <Property Name="STAN" Type="double" Nullable="false" />
+          <Property Name="JEDNOSTKA" Type="int" Nullable="false" />
+          <Property Name="DATA_WAZN" Type="timestamp" />
+          <Property Name="IFUPDDATE" Type="timestamp" />
+          <Property Name="IFUPDUSER" Type="varchar" MaxLength="10" />
+          <Property Name="KOREKTA_DO" Type="double" />
+          <Property Name="SKORYGOWANA_PRZEZ" Type="double" />
+          <Property Name="BLOKADA" Type="char" MaxLength="1" />
+          <Property Name="CZYNNY" Type="char" MaxLength="1" />
+          <Property Name="STAN0" Type="double" />
+          <Property Name="FAKT0" Type="varchar" MaxLength="20" />
+          <Property Name="DZAK0" Type="timestamp" />
+        </EntityType>
+        <EntityType Name="ZDST_KLAS">
+          <Key>
+            <PropertyRef Name="ID_APTEKI" />
+            <PropertyRef Name="ID_ZDST" />
+            <PropertyRef Name="ID_KLASYFIKACJE" />
+            <PropertyRef Name="WARTOSC" />
+          </Key>
+          <Property Name="ID_APTEKI" Type="int" Nullable="false" />
+          <Property Name="ID_ZDST" Type="double" Nullable="false" />
+          <Property Name="ID_KLASYFIKACJE" Type="int" Nullable="false" />
+          <Property Name="WARTOSC" Type="varchar" Nullable="false" MaxLength="40" />
+          <Property Name="IFUPDDATE" Type="timestamp" />
+          <Property Name="IFUPDUSER" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_KL_ZDST">
+          <End Role="ZDST" Type="Model.Store.ZDST" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ZDST_KLAS" Type="Model.Store.ZDST_KLAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZDST">
+              <PropertyRef Name="ID_APTEKI" />
+              <PropertyRef Name="ID_ZDST" />
+            </Principal>
+            <Dependent Role="ZDST_KLAS">
+              <PropertyRef Name="ID_APTEKI" />
+              <PropertyRef Name="ID_ZDST" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZDST_TOWARY">
+          <End Role="TOWARY" Type="Model.Store.TOWARY" Multiplicity="1" />
+          <End Role="ZDST" Type="Model.Store.ZDST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOWARY">
+              <PropertyRef Name="ID_APTEKI" />
+              <PropertyRef Name="ID_TOWARY" />
+            </Principal>
+            <Dependent Role="ZDST">
+              <PropertyRef Name="ID_APTEKI" />
+              <PropertyRef Name="ID_TOWARY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RemoteDatabaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="RemoteDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TOWARY" EntityType="RemoteDatabaseModel.TOWARY" />
+          <EntitySet Name="ZDST" EntityType="RemoteDatabaseModel.ZDST" />
+          <EntitySet Name="ZDST_KLAS" EntityType="RemoteDatabaseModel.ZDST_KLAS" />
+          <AssociationSet Name="FK_ZDST_TOWARY" Association="RemoteDatabaseModel.FK_ZDST_TOWARY">
+            <End Role="TOWARY" EntitySet="TOWARY" />
+            <End Role="ZDST" EntitySet="ZDST" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KL_ZDST" Association="RemoteDatabaseModel.FK_KL_ZDST">
+            <End Role="ZDST" EntitySet="ZDST" />
+            <End Role="ZDST_KLAS" EntitySet="ZDST_KLAS" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TOWARY">
+          <Key>
+            <PropertyRef Name="ID_APTEKI" />
+            <PropertyRef Name="ID_TOWARY" />
+          </Key>
+          <Property Name="ID_APTEKI" Type="Int32" Nullable="false" />
+          <Property Name="ID_TOWARY" Type="Int32" Nullable="false" />
+          <Property Name="NAZWA" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="IFUPDDATE" Type="DateTime" />
+          <Property Name="IFUPDUSER" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="POSTAC" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="DAWKA" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="EAN_REF" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ZDST" Relationship="RemoteDatabaseModel.FK_ZDST_TOWARY" FromRole="TOWARY" ToRole="ZDST" />
+        </EntityType>
+        <EntityType Name="ZDST">
+          <Key>
+            <PropertyRef Name="ID_APTEKI" />
+            <PropertyRef Name="ID_ZDST" />
+          </Key>
+          <Property Name="ID_APTEKI" Type="Int32" Nullable="false" />
+          <Property Name="ID_ZDST" Type="Double" Nullable="false" />
+          <Property Name="ID_DOSTAWY" Type="Int32" Nullable="false" />
+          <Property Name="POZYCJA" Type="Int32" Nullable="false" />
+          <Property Name="DATA" Type="DateTime" Nullable="false" />
+          <Property Name="ID_TOWARY" Type="Int32" Nullable="false" />
+          <Property Name="SZTUK" Type="Double" Nullable="false" />
+          <Property Name="SZTUK_JP" Type="Double" Nullable="false" />
+          <Property Name="STAN" Type="Double" Nullable="false" />
+          <Property Name="IFUPDDATE" Type="DateTime" />
+          <Property Name="IFUPDUSER" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="KOREKTA_DO" Type="Double" />
+          <Property Name="BLOKADA" Type="String" MaxLength="1" Unicode="true" FixedLength="true" />
+          <Property Name="CZYNNY" Type="String" MaxLength="1" Unicode="true" FixedLength="true" />
+          <Property Name="STAN0" Type="Double" />
+          <Property Name="FAKT0" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="DZAK0" Type="DateTime" />
+          <NavigationProperty Name="TOWARY" Relationship="RemoteDatabaseModel.FK_ZDST_TOWARY" FromRole="ZDST" ToRole="TOWARY" />
+          <NavigationProperty Name="ZDST_KLAS" Relationship="RemoteDatabaseModel.FK_KL_ZDST" FromRole="ZDST" ToRole="ZDST_KLAS" />
+          <Property Type="Int32" Name="JEDNOSTKA" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZDST_KLAS">
+          <Key>
+            <PropertyRef Name="ID_APTEKI" />
+            <PropertyRef Name="ID_ZDST" />
+            <PropertyRef Name="ID_KLASYFIKACJE" />
+            <PropertyRef Name="WARTOSC" />
+          </Key>
+          <Property Name="ID_APTEKI" Type="Int32" Nullable="false" />
+          <Property Name="ID_ZDST" Type="Double" Nullable="false" />
+          <Property Name="ID_KLASYFIKACJE" Type="Int32" Nullable="false" />
+          <Property Name="WARTOSC" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="IFUPDDATE" Type="DateTime" />
+          <Property Name="IFUPDUSER" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ZDST" Relationship="RemoteDatabaseModel.FK_KL_ZDST" FromRole="ZDST_KLAS" ToRole="ZDST" />
+        </EntityType>
+        <Association Name="FK_ZDST_TOWARY">
+          <End Role="TOWARY" Type="RemoteDatabaseModel.TOWARY" Multiplicity="1" />
+          <End Role="ZDST" Type="RemoteDatabaseModel.ZDST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOWARY">
+              <PropertyRef Name="ID_APTEKI" />
+              <PropertyRef Name="ID_TOWARY" />
+            </Principal>
+            <Dependent Role="ZDST">
+              <PropertyRef Name="ID_APTEKI" />
+              <PropertyRef Name="ID_TOWARY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KL_ZDST">
+          <End Role="ZDST" Type="RemoteDatabaseModel.ZDST" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ZDST_KLAS" Type="RemoteDatabaseModel.ZDST_KLAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZDST">
+              <PropertyRef Name="ID_APTEKI" />
+              <PropertyRef Name="ID_ZDST" />
+            </Principal>
+            <Dependent Role="ZDST_KLAS">
+              <PropertyRef Name="ID_APTEKI" />
+              <PropertyRef Name="ID_ZDST" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="RemoteDatabaseEntities">
+          <EntitySetMapping Name="TOWARY"><EntityTypeMapping TypeName="RemoteDatabaseModel.TOWARY"><MappingFragment StoreEntitySet="TOWARY">
+            <ScalarProperty Name="ID_APTEKI" ColumnName="ID_APTEKI" />
+            <ScalarProperty Name="ID_TOWARY" ColumnName="ID_TOWARY" />
+            <ScalarProperty Name="NAZWA" ColumnName="NAZWA" />
+            <ScalarProperty Name="IFUPDDATE" ColumnName="IFUPDDATE" />
+            <ScalarProperty Name="IFUPDUSER" ColumnName="IFUPDUSER" />
+            <ScalarProperty Name="POSTAC" ColumnName="POSTAC" />
+            <ScalarProperty Name="DAWKA" ColumnName="DAWKA" />
+            <ScalarProperty Name="EAN_REF" ColumnName="EAN_REF" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ZDST"><EntityTypeMapping TypeName="RemoteDatabaseModel.ZDST"><MappingFragment StoreEntitySet="ZDST">
+            <ScalarProperty Name="JEDNOSTKA" ColumnName="JEDNOSTKA" />
+                <ScalarProperty Name="ID_APTEKI" ColumnName="ID_APTEKI" />
+            <ScalarProperty Name="ID_ZDST" ColumnName="ID_ZDST" />
+            <ScalarProperty Name="ID_DOSTAWY" ColumnName="ID_DOSTAWY" />
+            <ScalarProperty Name="POZYCJA" ColumnName="POZYCJA" />
+            <ScalarProperty Name="DATA" ColumnName="DATA" />
+            <ScalarProperty Name="ID_TOWARY" ColumnName="ID_TOWARY" />
+            <ScalarProperty Name="SZTUK" ColumnName="SZTUK" />
+            <ScalarProperty Name="SZTUK_JP" ColumnName="SZTUK_JP" />
+            <ScalarProperty Name="STAN" ColumnName="STAN" />
+            <ScalarProperty Name="IFUPDDATE" ColumnName="IFUPDDATE" />
+            <ScalarProperty Name="IFUPDUSER" ColumnName="IFUPDUSER" />
+            <ScalarProperty Name="KOREKTA_DO" ColumnName="KOREKTA_DO" />
+            <ScalarProperty Name="BLOKADA" ColumnName="BLOKADA" />
+            <ScalarProperty Name="CZYNNY" ColumnName="CZYNNY" />
+            <ScalarProperty Name="STAN0" ColumnName="STAN0" />
+            <ScalarProperty Name="FAKT0" ColumnName="FAKT0" />
+            <ScalarProperty Name="DZAK0" ColumnName="DZAK0" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ZDST_KLAS"><EntityTypeMapping TypeName="RemoteDatabaseModel.ZDST_KLAS"><MappingFragment StoreEntitySet="ZDST_KLAS">
+            <ScalarProperty Name="ID_APTEKI" ColumnName="ID_APTEKI" />
+            <ScalarProperty Name="ID_ZDST" ColumnName="ID_ZDST" />
+            <ScalarProperty Name="ID_KLASYFIKACJE" ColumnName="ID_KLASYFIKACJE" />
+            <ScalarProperty Name="WARTOSC" ColumnName="WARTOSC" />
+            <ScalarProperty Name="IFUPDDATE" ColumnName="IFUPDDATE" />
+            <ScalarProperty Name="IFUPDUSER" ColumnName="IFUPDUSER" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="RemoteDatabase" ZoomLevel="58">
+        <EntityTypeShape EntityType="RemoteDatabaseModel.TOWARY" Width="1.5" PointX="0.5" PointY="1.875" Height="2.7494921874999969" IsExpanded="true" />
+        <EntityTypeShape EntityType="RemoteDatabaseModel.ZDST" Width="1.5" PointX="2.375" PointY="1.375" Height="4.8648079427083326" IsExpanded="true" />
+        <EntityTypeShape EntityType="RemoteDatabaseModel.ZDST_KLAS" Width="1.5" PointX="4.375" PointY="3.125" Height="2.3648893229166656" IsExpanded="true" />
+        <AssociationConnector Association="RemoteDatabaseModel.FK_ZDST_TOWARY" ManuallyRouted="false">
+          <ConnectorPoint PointX="2" PointY="3.2497460937499985" />
+          <ConnectorPoint PointX="2.375" PointY="3.2497460937499985" />
+        </AssociationConnector>
+        <AssociationConnector Association="RemoteDatabaseModel.FK_KL_ZDST" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.875" PointY="4.3074446614583328" />
+          <ConnectorPoint PointX="4.375" PointY="4.3074446614583328" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
